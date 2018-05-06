@@ -6,6 +6,7 @@ html {
 *::before,
 *::after {
     box-sizing: inherit;
+
 }
 
 html,
@@ -17,7 +18,7 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+    background: #ffffff url('../img/geometry2.jpg'); 
     font-family: 'Coda', cursive;
 }
 
@@ -30,7 +31,8 @@ body {
 
 h1 {
     font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+    font-weight: 350;
+    color:white;
 }
 
 /*
@@ -43,7 +45,7 @@ h1 {
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     padding: 32px;
     border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.4);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -89,6 +91,8 @@ h1 {
     text-align: left;
     width: 345px;
     margin-bottom: 10px;
+    color: white;
+
 }
 
 .score-panel .stars {
@@ -96,6 +100,7 @@ h1 {
     padding: 0;
     display: inline-block;
     margin: 0 5px 0 0;
+    color: yellow;
 }
 
 .score-panel .stars li {
@@ -106,10 +111,15 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+    color: red;
+
+
+
 }
 
 .score-panel .timer {
     margin-left: 50px;
+    color: white;
 }
 
 /*
@@ -125,13 +135,13 @@ h1 {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgb(0,0,1);
+    background-color: rgba(0,0,0,0.8);
 }
 
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: #fefeff;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -139,4 +149,13 @@ h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     text-align: center;
+}
+
+.zoom {
+    transition: transform .3s; /* Animation */
+    margin: 0 auto;
+}
+
+.zoom:hover {
+    transform: scale(2.0); /* (200% zoom */
 }

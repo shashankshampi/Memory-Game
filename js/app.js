@@ -1,6 +1,25 @@
-/*
- * shuffle() function provided by Udacity's starter code
- */
+
+//Global variable decleartion
+var deck = ["fa-diamond", "fa-diamond", "fa-paper-plane-o", "fa-paper-plane-o", "fa-anchor", "fa-anchor",
+           "fa-bolt", "fa-bolt", "fa-cube", "fa-cube", "fa-leaf", "fa-leaf",
+           "fa-bicycle", "fa-bicycle", "fa-bomb", "fa-bomb"];
+
+// Game state variables
+var open = [];
+var matched = 0;
+var moveCounter = 0;
+var numStars = 3;
+var timer = {
+    seconds: 0,
+    minutes: 0,
+    clearTime: -1
+};
+
+// setting stars based on values 
+var top = 16;
+var med = 24;
+
+var modal = $("#win-modal");
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -17,34 +36,7 @@ function shuffle(array) {
     return array;
 };
 
-/*
- * Following code added by Chris Pereira.
- */
 
-var deck = ["fa-diamond", "fa-diamond", "fa-paper-plane-o", "fa-paper-plane-o", "fa-anchor", "fa-anchor",
-           "fa-bolt", "fa-bolt", "fa-cube", "fa-cube", "fa-leaf", "fa-leaf",
-           "fa-bicycle", "fa-bicycle", "fa-bomb", "fa-bomb"];
-
-// Game state variables
-var open = [];
-var matched = 0;
-var moveCounter = 0;
-var numStars = 3;
-var timer = {
-    seconds: 0,
-    minutes: 0,
-    clearTime: -1
-};
-
-// Difficulty settings (max number of moves for each star)
-var hard = 15;
-var medium = 20;
-
-var modal = $("#win-modal");
-
-/*
- * Support functions used by main event callback functions.
- */
 
 // Interval function to be called every second, increments timer and updates HTML
 var startTimer = function() {
@@ -67,7 +59,7 @@ var startTimer = function() {
     $(".timer").text(time);
 };
 
-// Resets timer state and restarts timer
+// restarts timer and card states
 function resetTimer() {
     clearInterval(timer.clearTime);
     timer.seconds = 0;
@@ -77,7 +69,7 @@ function resetTimer() {
     timer.clearTime = setInterval(startTimer, 1000);
 };
 
-// Randomizes cards on board and updates card HTML
+// Randomizes cards 
 function updateCards() {
     deck = shuffle(deck);
     var index = 0;
@@ -88,7 +80,7 @@ function updateCards() {
     resetTimer();
 };
 
-// Toggles win modal on
+
 function showModal() {
     modal.css("display", "block");
 };
@@ -100,28 +92,28 @@ function removeStar() {
     $(".num-stars").text(String(numStars));
 };
 
-// Restores star icons to 3 stars, updates modal HTML
+// resetting the card stars
 function resetStars() {
     $(".fa-star-o").attr("class", "fa fa-star");
     numStars = 3;
     $(".num-stars").text(String(numStars));
 };
 
-// Updates number of moves in the HTML, removes star is necessary based on difficulty variables
+// setting stars based on difficulty level
 function updateMoveCounter() {
     $(".moves").text(moveCounter);
 
-    if (moveCounter === hard || moveCounter === medium) {
+    if (moveCounter === top || moveCounter === med) {
         removeStar();
     }
 };
 
-// Checks if card is a valid move (if it not currently matched or open)
+// checking validity of card
 function isValid(card) {
     return !(card.hasClass("open") || card.hasClass("match"));
 };
 
-// Returns whether or not currently open cards match
+// checking matching of clicked card
 function checkMatch() {
     if (open[0].children().attr("class")===open[1].children().attr("class")) {
         return true;
@@ -130,7 +122,7 @@ function checkMatch() {
     }
 };
 
-// Returns win condition
+// declear win after all card opened
 function hasWon() {
     if (matched === 16) {
         return true;
@@ -153,7 +145,7 @@ var setMatch = function() {
     }
 };
 
-// Sets currently open cards back to default state
+// Restore card back to default state
 var resetOpen = function() {
     open.forEach(function(card) {
         card.toggleClass("open");
@@ -171,11 +163,8 @@ function openCard(card) {
     }
 };
 
-/*
- * Event callback functions
- */
 
-// Resets all game state variables and resets all required HTML to default state
+// Play agian that requires reset of all global variables
 var resetGame = function() {
     open = [];
     matched = 0;
@@ -216,9 +205,7 @@ var playAgain = function() {
     modal.css("display", "none");
 };
 
-/*
- * Initalize event listeners
- */
+// Init Listeners
 
 $(".card").click(onClick);
 $(".restart").click(resetGame);
