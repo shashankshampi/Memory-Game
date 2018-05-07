@@ -7,11 +7,17 @@ This Game is about how fast you can memorize a fliped card and your luck. Each t
 Timmer will starts as the game is loaded and your marks(stars) will be determined how fast you can solve in less moves.
 
 ## Scoring Generating
-setting stars based on values 
-var top = 16
-var med = 24
+* Setting stars based on values 
+* var top = 16
+* var med = 24
+* so lesser time and move you make more star rating you will recieve.
 
 ## How to Run:
-[Download](https://github.com/shashankshampi/Memory-Game) or Clone the Repository.
-Open index.html file to view the project in your browser.
+* [Download](https://github.com/shashankshampi/Memory-Game) or Clone the Repository.
+* Open index.html file to view the project in your browser.
+
+### Note
+The Designed code is fully responsive and work well on different screen size of devices.
+
+
 
